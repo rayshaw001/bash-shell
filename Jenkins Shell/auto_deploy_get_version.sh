@@ -1,19 +1,19 @@
-#!/bin/bash	#specific sh version ,default is dash
-OLD_BUILD_ID=$BUILD_ID		#BUILD_id
+#!/bin/bash					#specific sh version ,default is dash
+OLD_BUILD_ID=$BUILD_ID				#BUILD_id
 echo $BUILD_ID
 BUILD_ID=dontKillMe
 sudo su
 cd /opt/suitectl
-echo "#!/bin/bash" > build.sh	#specify which type sh to use
-svs=($services)			#services is an array
+echo "#!/bin/bash" > build.sh			#specify which type sh to use
+svs=($services)					#services is an array
 tags=($serviceImageTags)
 locations=($serviceImageLocations)
-svs_length=${#svs[@]}		#this and below is length
+svs_length=${#svs[@]}				#this and below is length
 tags_length=${#tags[@]}		
 locations_length=${#locations[@]}
-while (( $tags_length < $svs_length ))	#fill versions
+while (( $tags_length < $svs_length ))		#fill versions
 do
-sn=${svs[$tags_length]}    #service name
+sn=${svs[$tags_length]}    			#service name
 tags[$tags_length]=`./suitectl list | grep -w $sn | awk -v sn=$sn '{if($1==sn){print $2}}'`
 tags_length=$tags_length+1
 done
