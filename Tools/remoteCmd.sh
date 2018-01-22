@@ -16,3 +16,7 @@ echo -e 'missing one or more of following argument(s):' \
         '\n passwd      ------  password '  \
         '\n cmd         ------  command that you want to run on remote host\n';
 fi
+
+
+# pre Requirements：
+# ssh & sshpass
